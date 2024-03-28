@@ -32,7 +32,7 @@ public class UserServiceImpl implements UserService{
         ResponseTemplateVo vo=new ResponseTemplateVo();
         User user = userRepository.findById(userid).get();
 
-        Department department = restTemplate.getForObject("http://localhost:8090/department/" + user.getDepartmentId(),Department.class);
+        Department department = restTemplate.getForObject("http://DEPARTMENTSERVICE/department/" + user.getDepartmentId(),Department.class);
 
         vo.setDepartment(department);
         vo.setUser(user);
