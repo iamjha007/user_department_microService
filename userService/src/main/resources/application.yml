@@ -4,15 +4,11 @@ server:
 spring:
   application:
     name: USERSERVICE
+  cloud:
+    config:
+      enabled: true
+      uri: http://localhost:8085
 
-eureka:
-  client:
-    register-with-eureka: true
-    fetch-registry: true
-    service-url:
-      defaultZone: http://localhost:8761/eureka/
-    instance:
-      hostname: localhost
 
 management:
   health:
@@ -40,16 +36,3 @@ resilience4j:
         permittedNumberOfCallsInHalfOpenState: 3
         slidingWindowSize: 10
         slidingWindowType: COUNT_BASED
-
-  retry:
-    instances:
-      ratingHotelService:
-        max-attempts: 3
-        wait-duration: 5s
-
-  ratelimiter:
-    instances:
-      userRateLimiter:
-        limit-refresh-period: 4s
-        limit-for-period: 2
-        timeout-duration: 2s
